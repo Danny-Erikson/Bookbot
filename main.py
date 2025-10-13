@@ -3,6 +3,9 @@ from stats import count_words
 from stats import count_characters
 from stats import filter
 
+# Used to import a book to be analyzed
+import sys
+
 
 def get_book_text(path):
     # Used to import a book to be analyzed
@@ -11,10 +14,14 @@ def get_book_text(path):
 
 
 def main():
-    # Start of the promgram
+    # Check for correct usage
+    if len(sys.argv) != 2:
+        print('Usage: python3 main.py <path_to_book>')
+        sys.exit(1)
+    # Start of the program
     print('============ BOOKBOT ============')
-    text = get_book_text("./books/frankenstein.txt")
-    print(f'Analyzing book found at books/{"placeholder.txt"}')
+    text = get_book_text(sys.argv[1])
+    print(f'Analyzing book found at {sys.argv[1]}')
 
     # Word Count
     num_words = count_words(text)
