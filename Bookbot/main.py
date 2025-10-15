@@ -1,10 +1,10 @@
+# Used to import a book to be analyzed
+import sys
+
 # Funtions for analyzing books, See stats.py for more details
 from stats import count_words
 from stats import count_characters
 from stats import filter
-
-# Used to import a book to be analyzed
-import sys
 
 
 def get_book_text(path):

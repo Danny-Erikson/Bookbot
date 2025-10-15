@@ -1,2 +1,6 @@
+# Data Folders
 /books
-/__pycache__
+
+# Python virtual environment
+__pycache__
+venv/
