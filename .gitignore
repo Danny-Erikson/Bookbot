@@ -4,3 +4,4 @@
 # Python virtual environment
 __pycache__
 venv/
+.vscode

@@ -1,7 +1,6 @@
 # Used for GUI
 import tkinter as tk
-from tkinter import ttk
-from tkinter import filedialog, font
+from tkinter import ttk, filedialog, font
 
 
 class BookBotApp:
@@ -26,7 +25,7 @@ class BookBotApp:
 
         # *File selection
         self.file_select = ttk.Button(
-            self.master, text="Select a File", command=self.select_file)
+            self.master, text="Select a File", command=self._select_file)
         self.file_label = ttk.Label(
             self.master, text="Selected file:", font=bold_font)
         self.file = ttk.Label(self.master)
@@ -36,6 +35,12 @@ class BookBotApp:
             self.master, text="Present to other 0%", font=bold_font)
         self.filter_slider = ttk.Scale(
             self.master, variable=self.filter_var, from_=0, to=100, length=150, orient="horizontal", command=self._update_filter_label)
+        self.description = ttk.Label(
+            text=f"Other% means any items that are below the percent are combined into one bar in the graph")
+
+        # *Submit Button
+        self.submit_button = ttk.Button(
+            self.master, text="Show graph", command=self._submit)
 
     def _layout_widgets(self):
         """Pack/place/grid UI elements."""
@@ -44,10 +49,15 @@ class BookBotApp:
         self.file.pack()
         self.filter_label.pack()
         self.filter_slider.pack()
+        self.description.pack()
+        self.submit_button.pack()
 
-    def select_file(self):
+    # HELPER FUNCTIONS
+
+    def _select_file(self):
         """Open a file dialog to select a file."""
-        path = filedialog.askopenfilename()
+        path = filedialog.askopenfilename(filetypes=(
+            ("Text files", "*.txt"), ("All files", "*.*")))
         if path:
             self.file_path = path
             file_name = path.split("/")[-1]
@@ -57,3 +67,11 @@ class BookBotApp:
         """Update the filter label when the slider is moved."""
         self.filter_label.config(
             text=f"Present to other: {int(self.filter_var.get())}%")
+
+    def _submit(self):
+        """Gather data from screen and switch to new screen"""
+        # FIXME: Added the function to clear the screen
+
+    def clear_frame(self):
+        for widget in self.master.winfo_children():
+            widget.destroy()
