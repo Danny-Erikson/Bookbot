@@ -25,7 +25,7 @@ def sort_on(items):
 
 
 def filter(data):
-    # Used to filter out non-alphabetical characters and create a dictionary of vaules sorted by frequency
+    # Used to filter out non-alphabetical characters and create a dictionary of values sorted by frequency
     final = []
     for i in data:
         if i.isalpha():
